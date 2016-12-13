@@ -25,6 +25,23 @@
     /*
       misc styles, nothing to do with CSS variables
     */
+    :root{
+    --base : yellow ;
+    --blur : 10px;
+    --spacing: 10px;
+
+    }
+
+    img {
+
+      padding: var(--spacing);
+      filter: blur(var(--blur));
+      background: var(--base);
+    }
+
+    .hl{
+      color: var(--base);
+    }
 
     body {
       text-align: center;
@@ -53,6 +70,25 @@
   </style>
 
   <script>
+    // var spacingElem = document.querySelector(`name==spacing`);
+    // var blurElem = document.querySelector(`name==blur`);
+    // var baseElem = document.querySelector(`name==base`);
+    var inputs = document.querySelectorAll(`.controls input`);
+    inputs.forEach(i=> i.addEventListener('change',UpdateHandler));
+    inputs.forEach(i=> i.addEventListener('mousemove',UpdateHandler));
+
+
+    function UpdateHandler(){
+
+
+    inputs.forEach((i)=>
+    {
+     console.log(i.value + (i.name=="base"? "" : "px"));
+      document.documentElement.style.setProperty(`--${i.name}`, i.value + (i.name=="base"? "" : "px"));
+    });
+
+    }
+
   </script>
 
 </body>
